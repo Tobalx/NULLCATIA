@@ -7,6 +7,8 @@ const app = express();
 const port = 5000;
 
 app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(routes);
 
 
