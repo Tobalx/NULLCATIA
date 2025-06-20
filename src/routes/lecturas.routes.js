@@ -3,17 +3,20 @@ const router = express.Router();
 const {validarLectura} = require('../middlewares/lecturas.validaciones');
 const lecturasController = require('../db/controller/lecturas.controller');
 
-router.get('/', async (req,res) => {
+router.get('/', async (req, res) => {
   try {
-    const lecturas = await lecturasController.getAll();
+    const lecturas = await lecturasController.getAll(); 
+    res.render('lecturas/index', { lecturas }); 
   } catch (error) {
+    console.error('Error al obtener lecturas:', error);
     res.status(500).send('Error al cargar el Rastro de los Sabios');
   }
-    res.render('lecturas/index', { lecturas });
 });
+
 router.get('/nueva', (req, res) => {
   res.render('lecturas/form'); 
 });
+
 router.post('/', validarLectura, async (req, res) => {
   const errores = validationResult(req);
 
@@ -27,6 +30,7 @@ router.post('/', validarLectura, async (req, res) => {
     res.status(500).send('Error al registrar la lectura');
   }
 });
+
 // router.get('/', validarLectura, (req , res) => {
 //     res.send('registrar nueva');
 // });
