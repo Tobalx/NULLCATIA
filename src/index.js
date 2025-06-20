@@ -19,7 +19,7 @@ app.use(express.json());
 // Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-//configuracionejs y layaut
+//configuraciones y layout
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayouts);

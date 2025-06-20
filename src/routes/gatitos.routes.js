@@ -6,8 +6,17 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const gatitos = await gatosController.getAll();
-    res.render('gatitos', { gatitos }); // Renderiza la vista con los datos
+    const { nombre, clan_id } = req.query;
+
+    let gatitos;
+    if (nombre || clan_id) {
+      gatitos = await gatosController.getByFilter({ nombre, clan_id });
+    } else {
+      gatitos = await gatosController.getAll();
+    }
+    
+    const clanes = await clanesController.getAll();
+    res.render('gatitos', { gatitos, clanes, filtros: req.query }); // Renderiza la vista con los datos
   } catch (error) {
     console.error('Error al obtener gatitos:', error);
     res.status(500).send('Hubo un error cargando los registros de gatitos.');

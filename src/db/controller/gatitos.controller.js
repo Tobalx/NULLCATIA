@@ -77,4 +77,32 @@ function remove(id) {
     });
 }
 
-module.exports = { getAll, getOneBy, create, update, remove };
+// Obtener gatos por filtro
+function getByFilter({ nombre, clan_id }) {
+  return new Promise((resolve, reject) => {
+    let query = `SELECT gatos.*, clanes.nombre AS clan FROM gatos
+                 INNER JOIN clanes ON gatos.clan_id = clanes.id`;
+    const conditions = [];
+    const values = [];
+
+    if (nombre) {
+      conditions.push(`gatos.nombre LIKE ?`);
+      values.push(`%${nombre}%`);
+    }
+
+    if (clan_id) {
+      conditions.push(`gatos.clan_id = ?`);
+      values.push(clan_id);
+    }
+
+    if (conditions.length > 0) {
+      query += ` WHERE ` + conditions.join(' AND ');
+    }
+
+    conn.query(query, values, (err, result) => {
+      return err ? reject(err) : resolve(result);
+    });
+  });
+}
+
+module.exports = { getAll, getOneBy, create, update, remove, getByFilter };
