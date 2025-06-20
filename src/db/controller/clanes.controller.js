@@ -5,6 +5,29 @@ const TABLA = "clanes";
 // Obtener todos los clanes
 function getAll() {
     return new Promise((resolve, reject) => {
+        const query = `
+            SELECT 
+                clanes.id,
+                clanes.nombre,
+                clanes.territorio_id,
+                territorios.nombre AS territorio,
+                fundador.nombre AS fundador
+            FROM clanes
+            INNER JOIN territorios ON clanes.territorio_id = territorios.id
+            LEFT JOIN gatos AS fundador ON fundador.id = (
+                SELECT id
+                FROM gatos
+                WHERE clan_id = clanes.id
+                ORDER BY edad DESC
+                LIMIT 1
+            )
+            ORDER BY clanes.id;
+        `;
+
+        conn.query(query, (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+
         conn.query(`SELECT * FROM ${TABLA}`, (error, result) => {
             return error ? reject(error) : resolve(result);
         });

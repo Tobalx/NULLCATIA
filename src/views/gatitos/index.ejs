@@ -33,7 +33,7 @@
             <tr>
               <td><%= index + 1 %></td>
               <td><%= gato.nombre %></td>
-              <td><%= gato.edad || 'Desconocida' %></td>
+              <td><%= gato.edad !== null && gato.edad !== undefined ? gato.edad : 'Desconocida' %></td>
               <td><%= gato.clan || 'Sin clan' %></td>
               <td>
                 <a href="/gatitos/editar/<%= gato.id %>" class="btn btn-warning btn-sm">

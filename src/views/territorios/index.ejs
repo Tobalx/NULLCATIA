@@ -21,7 +21,6 @@
         <tr>
           <th>#</th>
           <th>Nombre del Territorio</th>
-          <th>Descripción</th>
           <th>Clanes Protectores</th>
         </tr>
       </thead>
@@ -31,7 +30,6 @@
             <tr>
               <td><%= index + 1 %></td>
               <td><%= territorio.nombre %></td>
-              <td><%= territorio.descripcion || 'Sin descripción' %></td>
               <td><%= territorio.clanes || 'Ninguno' %></td>
             </tr>
           <% }) %>

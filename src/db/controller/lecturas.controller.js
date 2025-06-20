@@ -5,7 +5,15 @@ const TABLA = "lecturas";
 // Obtener todas las lecturas
 function getAll() {
     return new Promise((resolve, reject) => {
-        conn.query(`SELECT * FROM ${TABLA}`, (error, result) => {
+        conn.query(`SELECT 
+            l.*,
+            gatos.nombre AS gato_nombre,
+            pergaminos.titulo AS pergamino_titulo
+        FROM lecturas l
+        INNER JOIN gatos ON l.gato_id = gatos.id
+        INNER JOIN pergaminos ON l.pergamino_id = pergaminos.id
+        ORDER BY l.fecha_lectura DESC;
+        `, (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });

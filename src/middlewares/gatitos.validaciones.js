@@ -1,6 +1,6 @@
 const { body } = require('express-validator');
 
-const validargatitos = [ 
+const validarGatitos = [ 
     body('nombre')
     .notEmpty().withMessage('colocar el nombre es necesario') // validacion para que el campo no este vacio
     .isLength({ max: 20}).withMessage('el nombre debe tener maximo 20 caracteres'), // validacion de nombre por caracteres maximos
@@ -12,4 +12,4 @@ const validargatitos = [
     .isLength({max: 20}).withMessage('El color debe tener maximo 20 caracteres') // validar que el color tenga un minimo de caracteres
 ];
 
-module.exports = {validargatitos};
+module.exports = {validarGatitos};

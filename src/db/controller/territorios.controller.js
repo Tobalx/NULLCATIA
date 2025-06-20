@@ -5,7 +5,17 @@ const TABLA = "territorios";
 // Obtener todos los territorios
 function getAll() {
     return new Promise((resolve, reject) => {
-        conn.query(`SELECT * FROM ${TABLA}`, (error, result) => {
+        const query = `
+            SELECT 
+                territorios.id,
+                territorios.nombre,
+            GROUP_CONCAT(clanes.nombre SEPARATOR ', ') AS clanes
+            FROM territorios
+            LEFT JOIN clanes ON clanes.territorio_id = territorios.id
+            GROUP BY territorios.id;
+        `;
+
+        conn.query(query, (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });

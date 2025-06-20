@@ -18,3 +18,13 @@ main.container {
   color: #f8f8f8;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.forest {
+  background-image: url('https://i.pinimg.com/originals/76/aa/24/76aa24bf1e433a13444c18c5df7b839b.gif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

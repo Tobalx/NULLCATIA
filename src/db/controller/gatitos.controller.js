@@ -5,7 +5,13 @@ const TABLA = "gatos";
 // Obtener todos los gatos
 function getAll() {
     return new Promise((resolve, reject) => {
-        conn.query(`SELECT * FROM ${TABLA}`, (error, result) => {
+        const query = `
+            SELECT gatos.*, clanes.nombre AS clan
+            FROM gatos
+            INNER JOIN clanes ON gatos.clan_id = clanes.id
+        `;
+
+        conn.query(query, (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });
@@ -25,8 +31,12 @@ function getOneBy(id) {
 // Crear un nuevo gato
 function create(gato) {
     return new Promise((resolve, reject) => {
-        if (!gato || !gato.nombre || !gato.clan_id) {
-            return reject(new Error("Faltan campos obligatorios: nombre o clan_id"));
+        if (!gato || !gato.nombre || !gato.color || !gato.clan_id) {
+            return reject(new Error("Faltan campos obligatorios: nombre, color o clan_id"));
+        }
+
+        if (!gato.edad) {
+            gato.edad = 0;
         }
 
         conn.query(`INSERT INTO ${TABLA} SET ?`, gato, (error, result) => {
@@ -38,8 +48,12 @@ function create(gato) {
 // Actualizar un gato existente
 function update(id, gato) {
     return new Promise((resolve, reject) => {
-        if (!id || !gato || Object.keys(gato).length === 0) {
+        if (!id || !gato || Object.keys(gato).length === 0 || !gato.nombre || !gato.color || !gato.clan_id) {
             return reject(new Error("Faltan datos para actualizar"));
+        }
+
+        if (!gato.edad) {
+            gato.edad = 0;
         }
 
         conn.query(`UPDATE ${TABLA} SET ? WHERE id = ?`, [gato, id], (error, result) => {

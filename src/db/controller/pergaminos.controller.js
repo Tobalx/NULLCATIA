@@ -5,7 +5,26 @@ const TABLA = "pergaminos";
 // Obtener todos los pergaminos
 function getAll() {
     return new Promise((resolve, reject) => {
-        conn.query(`SELECT * FROM ${TABLA}`, (error, result) => {
+        conn.query(`SELECT 
+            p.id AS pergamino_id,
+            p.titulo,
+            p.contenido,
+            c.nombre AS clan
+        FROM pergaminos p
+        LEFT JOIN (
+            SELECT l1.*
+            FROM lecturas l1
+            INNER JOIN (
+                SELECT pergamino_id, MAX(fecha_lectura) AS max_fecha
+                FROM lecturas
+                GROUP BY pergamino_id
+            ) l2
+            ON l1.pergamino_id = l2.pergamino_id AND l1.fecha_lectura = l2.max_fecha
+        ) l ON p.id = l.pergamino_id
+        LEFT JOIN gatos g ON l.gato_id = g.id
+        LEFT JOIN clanes c ON g.clan_id = c.id
+        ORDER BY p.id;
+        `, (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });

@@ -31,7 +31,7 @@
               <td><%= index + 1 %></td>
               <td><%= lectura.gato_nombre || 'Desconocido' %></td>
               <td><%= lectura.pergamino_titulo || 'Sin título' %></td>
-              <td><%= new Date(lectura.fecha).toLocaleString() || 'Desconocida' %></td>
+              <td><%= new Date(lectura.fecha_lectura).toLocaleString() || 'Desconocida' %></td>
             </tr>
           <% }) %>
         <% } else { %>

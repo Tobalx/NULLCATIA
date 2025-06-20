@@ -1,6 +1,7 @@
 const express = require('express');
-const {validargatito} = require('../middlewares/gatitos.validaciones');
+const {validarGatitos} = require('../middlewares/gatitos.validaciones');
 const gatosController = require('../db/controller/gatitos.controller');
+const clanesController = require('../db/controller/clanes.controller');
 const router = express.Router(); 
 
 router.get('/', async (req, res) => {
@@ -13,14 +14,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/nuevo', (req, res) => {
-  res.render('gatitos/crear');
+router.get('/nuevo', async (req, res) => {
+  const clanes = await clanesController.getAll();
+  res.render('gatitos/crear', { clanes });
 });
-/* 
-router.post('/', validargatito, (req, res) => { // crear nuevo gatito
-res.send('crear un nuevo gatito :');
-});
-*/
+
+// router.post('/', validarGatitos, (req, res) => { // crear nuevo gatito
+// res.send('crear un nuevo gatito :');
+// });
+
 
 
 router.post('/nuevo', async (req, res) => {
@@ -28,7 +30,8 @@ router.post('/nuevo', async (req, res) => {
     const nuevoGato = {
       nombre: req.body.nombre,
       edad: req.body.edad || null,
-      clan: req.body.clan || null,
+      color: req.body.color || null,
+      clan_id: req.body.clan_id || null,
     };
     await gatosController.create(nuevoGato);
     res.redirect('/gatitos');
@@ -41,7 +44,8 @@ router.get('/editar/:id', async (req, res) => {
   try {
     const gato = await gatosController.getOneBy(req.params.id);
     if (!gato) return res.status(404).send("Gato no encontrado");
-    res.render('gatitos/editar', { gato });
+    const clanes = await clanesController.getAll();
+    res.render('gatitos/editar', { gato, clanes });
   } catch (err) {
     res.status(500).send("Error al cargar el templo de recasting.");
   }
@@ -51,8 +55,9 @@ router.post('/editar/:id', async (req, res) => {
   const id = req.params.id;
   const datos = {
     nombre: req.body.nombre,
-    edad: req.body.edad,
-    clan: req.body.clan
+    edad: req.body.edad || null,
+    color: req.body.color,
+    clan_id: req.body.clan_id
   };
 
   try {

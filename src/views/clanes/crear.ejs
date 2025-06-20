@@ -14,13 +14,13 @@
     </div>
 
     <div class="mb-3">
-      <label for="territorio" class="form-label">Territorio Custodiado</label>
-      <input type="text" class="form-control" id="territorio" name="territorio" placeholder="Ej: Archipiélagos de APIs, Praderas de Pila..." required>
-    </div>
-
-    <div class="mb-3">
-      <label for="fundador" class="form-label">Fundador</label>
-      <input type="text" class="form-control" id="fundador" name="fundador">
+      <label for="territorio_id" class="form-label">Territorio Custodiado</label>
+      <select class="form-select" name="territorio_id" id="territorio_id" required>
+        <option value="" selected disabled>Selecciona un territorio</option>
+        <% territorios.forEach(territorio => { %>
+          <option value="<%= territorio.id %>"><%= territorio.nombre %></option>
+        <% }) %>
+      </select>
     </div>
 
     <div class="d-flex justify-content-between">

@@ -20,8 +20,18 @@
     </div>
 
     <div class="mb-3">
-      <label for="clan" class="form-label">Clan Protector</label>
-      <input type="text" class="form-control" id="clan" name="clan" placeholder="Nombre del clan protector">
+      <label for="color" class="form-label">Color</label>
+      <input type="text" class="form-control" id="color" name="color" placeholder="Color del pelaje del gatito" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="clan_id" class="form-label">Clan Protector</label>
+      <select class="form-select" name="clan_id" id="clan_id" required>
+        <option value="" selected disabled>Selecciona un clan protector</option>
+        <% clanes.forEach(clan => { %>
+          <option value="<%= clan.id %>"><%= clan.nombre %></option>
+        <% }) %>
+      </select>
     </div>
 
     <div class="d-flex justify-content-between">

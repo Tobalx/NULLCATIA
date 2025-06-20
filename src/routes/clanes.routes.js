@@ -2,8 +2,7 @@ const { Router } = require('express');
 const {validarclan} = require('../middlewares/clanes.validaciones');
 const router = Router();
 const clanesController = require('../db/controller/clanes.controller');
-
-
+const territorioController = require('../db/controller/territorios.controller');
 
 router.get('/', async (req, res) => {
   try {
@@ -15,17 +14,19 @@ router.get('/', async (req, res) => {
 });
 
 
-router.get('/crear', (req, res) => {
-  res.render('clanes/crear');
+router.get('/crear', async (req, res) => {
+  const territorios = await territorioController.getAll();
+  res.render('clanes/crear', { territorios });
 });
 
 router.post('/crear', async (req, res) => {
-  try {
+  // try {
+  console.log(req.body);
     await clanesController.create(req.body);
     res.redirect('/clanes');
-  } catch (err) {
-    res.status(500).send("Error al fundar el clan.");
-  }
+  // } catch (err) {
+  //   res.status(500).send("Error al fundar el clan.");
+  // }
 });
 
 
