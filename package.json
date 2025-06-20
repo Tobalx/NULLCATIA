@@ -19,7 +19,9 @@
     "express-ejs-layouts": "^2.5.1",
     "express-validator": "^7.2.1",
     "middleware-io": "^2.8.1",
-    "mysql2": "^3.14.1"
+    "mysql2": "^3.14.1",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

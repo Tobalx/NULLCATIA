@@ -1,0 +1,339 @@
+openapi: 3.0.0
+info:
+  title: API de NULLCATIA
+  version: 1.0.0
+  description: Documentación Swagger de las rutas principales del proyecto Node + EJS
+
+servers:
+  - url: http://localhost:5000
+
+paths:
+  /:
+    get:
+      summary: Página principal
+      description: Renderiza la vista principal usando EJS
+      tags:
+        - General
+      responses:
+        '200':
+          description: Página de inicio renderizada correctamente
+
+  /alternativa:
+    get:
+      summary: Ruta alternativa
+      tags:
+        - General
+      responses:
+        '200':
+          description: Respuesta con texto plano de la ruta alternativa
+
+#SWAGGER Clanes
+  /clanes:
+    get:
+      summary: Mostrar todos los clanes
+      description: Renderiza una vista con todos los clanes disponibles.
+      tags:
+        - Clanes
+      responses:
+        '200':
+          description: Vista con lista de clanes
+        '500':
+          description: Error al convocar el consejo de clanes
+
+  /clanes/crear:
+    get:
+      summary: Mostrar formulario para crear un clan
+      description: Renderiza un formulario con la lista de territorios disponibles.
+      tags:
+        - Clanes
+      responses:
+        '200':
+          description: Vista del formulario de creación de clan
+
+    post:
+      summary: Crear un nuevo clan
+      description: Procesa los datos del formulario para crear un nuevo clan.
+      tags:
+        - Clanes
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: Clan Lunares
+                territorioId:
+                  type: string
+                  example: 647c2ab52e2982c2fd123456
+                descripcion:
+                  type: string
+                  example: Clan pacífico que vive cerca del río
+              required:
+                - nombre
+                - territorioId
+      responses:
+        '302':
+          description: Redirección a /clanes tras crear el clan
+        '500':
+          description: Error al fundar el clan
+
+
+#Swagger Gatitios
+  /gatitos:
+    get:
+      summary: Mostrar todos los gatitos
+      description: Renderiza la vista con la lista completa de gatitos
+      tags:
+        - Gatitos
+      responses:
+        '200':
+          description: Vista de todos los gatitos
+        '500':
+          description: Error al cargar los registros de gatitos
+
+  /gatitos/nuevo:
+    get:
+      summary: Mostrar formulario para nuevo gatito
+      tags:
+        - Gatitos
+      responses:
+        '200':
+          description: Vista con el formulario para crear un nuevo gatito
+
+    post:
+      summary: Crear un nuevo gatito
+      tags:
+        - Gatitos
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: Michi
+                edad:
+                  type: integer
+                  example: 3
+                color:
+                  type: string
+                  example: gris
+                clan_id:
+                  type: string
+                  example: 664a8f07e6e34b35a5d12345
+              required:
+                - nombre
+      responses:
+        '302':
+          description: Redirección a /gatitos tras crear el gatito
+        '500':
+          description: Error invocando nuevo gatito
+
+  /gatitos/editar/{id}:
+    get:
+      summary: Mostrar formulario para editar un gatito
+      tags:
+        - Gatitos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vista con el formulario de edición del gatito
+        '404':
+          description: Gatito no encontrado
+        '500':
+          description: Error al cargar el templo de recasting
+
+    post:
+      summary: Editar gatito existente
+      tags:
+        - Gatitos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                  example: Bigotes
+                edad:
+                  type: integer
+                  example: 5
+                color:
+                  type: string
+                  example: blanco
+                clan_id:
+                  type: string
+                  example: 664a8f07e6e34b35a5d12345
+              required:
+                - nombre
+      responses:
+        '302':
+          description: Redirección tras editar el gatito
+        '500':
+          description: Mutación fallida
+
+  /gatitos/{id}:
+    delete:
+      summary: Eliminar un gatito por ID
+      tags:
+        - Gatitos
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Gatito eliminado (mensaje de texto)
+
+
+#Swagger Pergaminos
+  /pergaminos:
+    get:
+      summary: Mostrar todos los pergaminos
+      description: Renderiza la vista con la lista de todos los pergaminos
+      tags:
+        - Pergaminos
+      responses:
+        '200':
+          description: Vista con los pergaminos
+        '500':
+          description: Error al desenrollar los pergaminos
+
+  /pergaminos/crear:
+    get:
+      summary: Mostrar formulario para crear un pergamino
+      description: Devuelve la vista HTML con el formulario de creación de pergaminos.
+      tags:
+        - Pergaminos
+      responses:
+        '200':
+          description: Formulario cargado correctamente
+
+    post:
+      summary: Crear un nuevo pergamino
+      tags:
+        - Pergaminos
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: string
+                  example: El Legado del Sol
+                contenido:
+                  type: string
+                  example: "Cuando los astros hablen, escucha con atención..."
+                autor:
+                  type: string
+                  example: "Maestro Nebuloso"
+              required:
+                - titulo
+                - contenido
+      responses:
+        '302':
+          description: Redirección a /pergaminos tras crear el pergamino
+        '500':
+          description: Error al escribir el pergamino
+
+#Swagger Territorios
+  /territorios:
+    get:
+      summary: Mostrar todos los territorios
+      description: Renderiza la vista con la lista de territorios existentes
+      tags:
+        - Territorios
+      responses:
+        '200':
+          description: Vista cargada correctamente
+        '500':
+          description: Error al cargar la geografía del reino
+
+  /territorios/nuevo:
+    get:
+      summary: Mostrar formulario para nuevo territorio
+      tags:
+        - Territorios
+      responses:
+        '200':
+          description: Muestra el formulario de creación de territorio
+
+#Swagger Lecturas
+  /lecturas:
+    get:
+      summary: Mostrar todas las lecturas
+      description: Renderiza la vista con las lecturas guardadas
+      tags:
+        - Lecturas
+      responses:
+        '200':
+          description: Lista de lecturas renderizada correctamente
+        '500':
+          description: Error al cargar el Rastro de los Sabios
+
+    post:
+      summary: Crear una nueva lectura
+      description: Registra una nueva lectura en la base de datos (requiere validación)
+      tags:
+        - Lecturas
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: string
+                  example: Sabiduría del Clan Sombrío
+                descripcion:
+                  type: string
+                  example: "Lectura sagrada transmitida en los eclipses."
+                autor:
+                  type: string
+                  example: "Oráculo Gris"
+              required:
+                - titulo
+                - descripcion
+      responses:
+        '302':
+          description: Redirecciona a /lecturas si fue exitoso
+        '400':
+          description: Validación fallida, errores en los datos
+        '500':
+          description: Error al registrar la lectura
+
+  /lecturas/nueva:
+    get:
+      summary: Mostrar formulario para nueva lectura
+      tags:
+        - Lecturas
+      responses:
+        '200':
+          description: Muestra el formulario HTML para crear una nueva lectura
+
+
+
+          
