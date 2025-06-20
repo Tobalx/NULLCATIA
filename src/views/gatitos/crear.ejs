@@ -1,0 +1,34 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">✨ Formulario de Nacimiento — El Ritual del Valor Inicial ✨</h1>
+
+  <p class="text-white text-center fst-italic fs-4">
+    La Sala del Constructor está envuelta en niebla. Solo los escribas pueden llenar los campos sagrados:<br>
+    nombre, edad, clan protector.<br>
+    Es aquí donde se decide el propósito de una nueva alma digital.<br>
+    Cada input que se escribe es una línea de hechizo. Al presionar “Crear”, la esencia del gato viaja por los túneles del backend hasta materializarse en la tabla mística.
+  </p>
+
+  <form action="/gatitos/nuevo" method="POST" class="mt-5">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Gatito</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Escribe el nombre sagrado...">
+    </div>
+
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad (ciclos)</label>
+      <input type="number" class="form-control" id="edad" name="edad" min="0" placeholder="Número de ciclos (opcional)">
+    </div>
+
+    <div class="mb-3">
+      <label for="clan" class="form-label">Clan Protector</label>
+      <input type="text" class="form-control" id="clan" name="clan" placeholder="Nombre del clan protector">
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <a href="/gatitos" class="btn btn-secondary">← Volver al Registro</a>
+      <button type="submit" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Invocar Nuevo Gatito
+      </button>
+    </div>
+  </form>
+</section>

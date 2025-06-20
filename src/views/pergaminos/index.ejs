@@ -1,0 +1,48 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">📜 Lista de Pergaminos — El Archivo de la Memoria Gatuna 📜</h1>
+
+  <p class="text-white text-center fst-italic fs-5">
+    Los Pergaminos no son simples textos. Son recuerdos digitalizados de generaciones enteras.<br>
+    Guardados por los clanes, sus líneas contienen soluciones a problemas antiguos,<br>
+    fórmulas olvidadas, y memes mágicos que explican el universo.<br>
+    Esta vista es la entrada a la Biblioteca de Logs Eternos. Leer uno puede alterar tu ciclo de ejecución... <strong>para siempre</strong>.
+  </p>
+
+  <!-- Botones -->
+  <div class="d-flex justify-content-between mb-3">
+    <a href="/" class="btn btn-primary">
+      <i class="bi bi-house-door"></i> Volver al Reino NULLCATIA
+    </a>
+
+    <a href="/pergaminos/crear" class="btn btn-success">
+      <i class="bi bi-file-earmark-plus"></i> Agregar Nuevo Pergamino
+    </a>
+  </div>
+
+  <div class="table-responsive mt-4">
+    <table class="table table-dark table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Clan Custodio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (pergaminos && pergaminos.length > 0) { %>
+          <% pergaminos.forEach((pergamino, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= pergamino.titulo %></td>
+              <td><%= pergamino.clan || 'Anónimo' %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="3" class="text-center text-warning">Ningún pergamino ha sido desenrollado aún...</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

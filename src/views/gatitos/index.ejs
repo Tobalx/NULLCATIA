@@ -1,0 +1,53 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">🐾 El Registro de las Almas Inicializadas 🐾</h1>
+  <p class="text-white text-center fst-italic fs-4">
+    En las cámaras de Stack Memoria se conservan los registros de los gatitos que han sido invocados desde el Vacío Nulo.<br>
+    Cada uno es una línea en el Gran Archivo Binario. Cada gato una variable, cada variable una voluntad.
+  </p>
+
+  <!-- Botones -->
+  <div class="d-flex justify-content-between mb-3">
+    <a href="/" class="btn btn-primary">
+      <i class="bi bi-house-door"></i> Volver al Reino NULLCATIA
+    </a>
+
+    <a href="/gatitos/nuevo" class="btn btn-success">
+      <i class="bi bi-plus-circle"></i> Invocar Nuevo Gatito
+    </a>
+  </div>
+
+  <div class="table-responsive mt-4">
+    <table class="table table-dark table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Edad (ciclos)</th>
+          <th>Clan</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (gatitos && gatitos.length > 0) { %>
+          <% gatitos.forEach((gato, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= gato.nombre %></td>
+              <td><%= gato.edad || 'Desconocida' %></td>
+              <td><%= gato.clan || 'Sin clan' %></td>
+              <td>
+                <a href="/gatitos/editar/<%= gato.id %>" class="btn btn-warning btn-sm">
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="text-center text-warning">No hay almas registradas aún...</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

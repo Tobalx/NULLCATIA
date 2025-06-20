@@ -1,0 +1,35 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">🌱 Formulario de Clan — “La Fundación del Estilo” 🌱</h1>
+
+  <p class="text-white text-center fst-italic fs-5">
+    Cuando una nueva ideología surge, cuando el código toma una forma nunca antes vista, nace un clan.<br>
+    Esta vista permite registrar ese nacimiento. Escoger su nombre, su territorio, su rol dentro del Reino.<br>
+    <strong>Es una ceremonia solemne</strong>: crear un clan es declarar que el universo necesita una nueva forma de organización felina.
+  </p>
+
+  <form action="/clanes/crear" method="POST" class="mt-5">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Clan</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="territorio" class="form-label">Territorio Custodiado</label>
+      <input type="text" class="form-control" id="territorio" name="territorio" placeholder="Ej: Archipiélagos de APIs, Praderas de Pila..." required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fundador" class="form-label">Fundador</label>
+      <input type="text" class="form-control" id="fundador" name="fundador">
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <a href="/clanes" class="btn btn-secondary">
+        ← Volver al Consejo de Compilación
+      </a>
+      <button type="submit" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Fundar Clan
+      </button>
+    </div>
+  </form>
+</section>

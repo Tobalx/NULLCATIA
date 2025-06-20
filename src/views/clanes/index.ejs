@@ -1,0 +1,50 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">🏛️ Lista de Clanes — El Consejo de Compilación 🏛️</h1>
+
+  <p class="text-white text-center fst-italic fs-5">
+    En lo alto de las Montañas de Índices se reúnen los clanes: agrupaciones felinas que protegen el orden digital.<br>
+    Cada uno custodia un territorio sagrado — las praderas de pila, los océanos de objetos, los archipiélagos de APIs.<br>
+    Ver esta lista es como mirar el mapa político del alma de NULLCATIA.<br>
+    <strong>Cada clan representa una lógica, un estilo, una tradición de código.</strong>
+  </p>
+
+  <!-- Botones -->
+  <div class="d-flex justify-content-between mb-3">
+    <a href="/" class="btn btn-primary">
+      <i class="bi bi-house-door"></i> Volver al Reino NULLCATIA
+    </a>
+
+    <a href="/clanes/crear" class="btn btn-success">
+      <i class="bi bi-people-fill"></i> Fundar Nuevo Clan
+    </a>
+  </div>
+
+  <div class="table-responsive mt-4">
+    <table class="table table-dark table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Nombre del Clan</th>
+          <th>Territorio Custodiado</th>
+          <th>Fundador</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (clanes && clanes.length > 0) { %>
+          <% clanes.forEach((clan, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= clan.nombre %></td>
+              <td><%= clan.territorio || 'Desconocido' %></td>
+              <td><%= clan.fundador || 'Anónimo' %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="4" class="text-center text-warning">Aún no se ha fundado ningún clan...</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

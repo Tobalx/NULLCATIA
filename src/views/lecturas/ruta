@@ -1,0 +1,13 @@
+/*
+router.get('/', async (req, res) => {
+    try {
+        const lecturas = await lecturasController.getAll();
+        res.render('lecturas/index', { lecturas });
+    } catch (error) {
+        res.status(500).send('Error al cargar el Rastro de los Sabios');
+    }
+});
+
+
+falta ruta
+*/

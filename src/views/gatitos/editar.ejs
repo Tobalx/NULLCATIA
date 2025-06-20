@@ -1,0 +1,33 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">🛠️ El Recasting del Destino 🛠️</h1>
+
+  <p class="text-white text-center fst-italic fs-3">
+    Algunos gatos, al enfrentarse al mundo, descubren que su valor inicial no refleja su verdadero ser.<br>
+    En estos casos, se permite acceder al Templo de Recasting. Aquí, los atributos pueden ser reescritos.<br>
+    <strong>Pero cuidado</strong>: alterar un gato que ya ha sido instanciado es una operación de riesgo. Los sabios lo llaman “mutación peligrosa”.
+  </p>
+
+  <form action="/gatitos/editar/<%= gato.id %>" method="POST" class="mt-5">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre del Gatito</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" required value="<%= gato.nombre %>">
+    </div>
+
+    <div class="mb-3">
+      <label for="edad" class="form-label">Edad (ciclos)</label>
+      <input type="number" class="form-control" id="edad" name="edad" value="<%= gato.edad %>">
+    </div>
+
+    <div class="mb-3">
+      <label for="clan" class="form-label">Clan</label>
+      <input type="text" class="form-control" id="clan" name="clan" value="<%= gato.clan %>">
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <a href="/gatitos" class="btn btn-secondary">← Volver al Registro</a>
+      <button type="submit" class="btn btn-warning">
+        <i class="bi bi-save"></i> Reescribir Atributos
+      </button>
+    </div>
+  </form>
+</section>

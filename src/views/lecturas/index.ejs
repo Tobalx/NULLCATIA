@@ -1,0 +1,45 @@
+<section class="text-light bg-dark p-4 rounded shadow">
+  <h1 class="mb-4 text-center">🔮 Lecturas — “El Rastro de los Sabios”</h1>
+
+  <p class="text-white text-center fst-italic fs-5">
+    Cada vez que un gato lee un pergamino, su lectura queda impresa en la Corriente de Trazas.<br>
+    Aquí, los Oráculos del Debug consultan quién leyó qué, y cuándo.<br>
+    Esta vista no solo es un historial: es una profecía.<br>
+    Porque al ver qué conocimiento circula, se puede prever el próximo despertar, el próximo error… o la próxima revolución.
+  </p>
+
+  <div class="text-end mb-3">
+    <a href="/" class="btn btn-primary">
+      <i class="bi bi-house-door"></i> Volver al Reino NULLCATIA
+    </a>
+  </div>
+
+  <div class="table-responsive mt-4">
+    <table class="table table-dark table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Gato</th>
+          <th>Pergamino</th>
+          <th>Fecha de Lectura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (lecturas && lecturas.length > 0) { %>
+          <% lecturas.forEach((lectura, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= lectura.gato_nombre || 'Desconocido' %></td>
+              <td><%= lectura.pergamino_titulo || 'Sin título' %></td>
+              <td><%= new Date(lectura.fecha).toLocaleString() || 'Desconocida' %></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="4" class="text-center text-warning">No hay lecturas registradas aún...</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</section>

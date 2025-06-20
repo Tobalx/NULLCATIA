@@ -1,3 +1,6 @@
+CREATE DATABASE nullcatia;
+use nullcatia;
+
 -- Tabla: Territorios
 CREATE TABLE territorios (
     id INT AUTO_INCREMENT PRIMARY KEY,

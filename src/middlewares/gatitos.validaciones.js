@@ -11,4 +11,5 @@ const validargatitos = [
     .notEmpty().withMessage('colocar el color es obligatorio') // validacion para que el campo no este vacio
     .isLength({max: 20}).withMessage('El color debe tener maximo 20 caracteres') // validar que el color tenga un minimo de caracteres
 ];
+
 module.exports = {validargatitos};

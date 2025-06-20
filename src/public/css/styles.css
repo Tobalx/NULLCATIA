@@ -1,0 +1,20 @@
+html, body {
+  background-color: #1c1c1c; /* o prueba #121212 para más oscuridad */
+  color: #f0f0f0; /* texto claro */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fondo transparente para el contenido principal */
+main.container {
+  background-color: transparent;
+}
+
+/* Opcional: dar estilo a tarjetas u otras secciones */
+.card {
+  background-color: #2a2a2a;
+  border: none;
+  color: #f8f8f8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
