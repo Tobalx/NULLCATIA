@@ -1,4 +1,9 @@
 #  ***Nullcatia*** 
+**Nombres:** 
+Hilary Varela, 
+Cristobal Martinez,
+lucas
+jose
 
 ## 🏰 _Inicio del Portal — “La Llamada del Núcleo”_
 
