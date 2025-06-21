@@ -2,8 +2,8 @@
 **Nombres:** 
 Hilary Varela, 
 Cristobal Martinez,
-lucas
-jose
+Lucas Arce, 
+José Flores
 
 ## 🏰 _Inicio del Portal — “La Llamada del Núcleo”_
 
