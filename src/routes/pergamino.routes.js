@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/crear', (req, res) => {
-  res.render('pergaminos/crear');// crear formulario nuevo del pergamino
+  res.render('pergaminos/crear');
 }); 
 
 router.post('/crear', async (req, res) => {

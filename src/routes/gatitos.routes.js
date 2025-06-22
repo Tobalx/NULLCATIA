@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     }
     
     const clanes = await clanesController.getAll();
-    res.render('gatitos', { gatitos, clanes, filtros: req.query }); // Renderiza la vista con los datos
+    res.render('gatitos', { gatitos, clanes, filtros: req.query }); 
   } catch (error) {
     console.error('Error al obtener gatitos:', error);
     res.status(500).send('Hubo un error cargando los registros de gatitos.');

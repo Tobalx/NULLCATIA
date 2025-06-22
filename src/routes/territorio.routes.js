@@ -13,10 +13,10 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/nuevo', (req, res) => {
-  res.send('formulario para nuevo territorio :'); // crear formulario nuevo del territorio
+  res.send('formulario para nuevo territorio :'); 
 });
 
-router.get('/nuevo', (req, res) => { // formulario para un nuevo territorio
+router.get('/nuevo', (req, res) => {
     res.send('formulario para un nuevo territorio');
 });
 /* 
