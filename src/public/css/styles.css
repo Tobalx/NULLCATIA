@@ -1,9 +1,17 @@
+@font-face {
+  font-family: 'LowresPixel';
+  src: url('/fonts/LowresPixel-Regular.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body {
   background-color: #1c1c1c; /* o prueba #121212 para más oscuridad */
   color: #f0f0f0; /* texto claro */
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: 'LowresPixel', sans-serif;
 }
 
 /* Fondo transparente para el contenido principal */
@@ -21,6 +29,16 @@ main.container {
 
 .forest {
   background-image: url('/img/forest.gif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founders {
+  background-image: url('/img/founders.jpeg');
   background-size: cover;
   background-position: center;
   height: 100vh;

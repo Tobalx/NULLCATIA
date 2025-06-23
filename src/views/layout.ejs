@@ -13,7 +13,8 @@
     <!-- navbar contenido -->
   </nav>
 
-  <main class="forest">
+  <% const claseMain = typeof mainClass !== 'undefined' ? mainClass : 'forest'; %>
+  <main class="<%= claseMain %>">
     <div class="container mt-5">
       <%- body %>  <!-- Aquí se inyecta index.ejs -->
     </div>

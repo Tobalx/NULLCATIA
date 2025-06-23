@@ -4,7 +4,7 @@ const ruta = express.Router();
 
 
 ruta.get('/', (req, res) => {
-  res.render('fundadores');
+  res.render('fundadores', { mainClass: 'founders' });
 });
 
 
